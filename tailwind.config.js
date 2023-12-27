@@ -5,7 +5,14 @@ export default {
     "./src/*.jsx"
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        triangle: 'url(./bg-triangle.svg)'
+      },
+      fontFamily: {
+        sans: '"Barlow Semi Condensed", sans-serif'
+      }
+    },
   },
   plugins: [],
 }
