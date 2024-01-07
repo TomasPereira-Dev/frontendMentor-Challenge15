@@ -20,6 +20,10 @@ export default {
         text1: "hsl(229, 25%, 31%)",
         text2:"hsl(229, 64%, 46%)",
         headerOutline: "hsl(217, 16%, 45%)",
+        rockShade: "hsl(346, 74%, 35%)",
+        paperShade: "hsl(229, 66%, 45%)",
+        scissorsShade: "hsl(28, 77%, 44%)",
+        innerShade: "hsl(229, 19%, 77%)"
       }
     },
   },
