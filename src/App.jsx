@@ -1,19 +1,28 @@
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
+import RulesModal from './Components/RulesModal'
 import './App.css'
 
 const App = () => {
     const [userScore, setUserScore] = useState(0)
+    const [isOpen, setIsOpen] = useState(false)
+
+    const modalStateHandler = (isOpen) => {
+        setIsOpen(!isOpen)
+    }
+
     return(
         <>
-        <div className='flex flex-col justify-between gap-16 p-6 h-full'> 
+        {isOpen && createPortal(<RulesModal isOpen={isOpen} modalStateHandler={modalStateHandler}/>, document.getElementById("rules-modal"))}
+        <div className='relative z-0 flex flex-col justify-between gap-16 p-6 h-full'> 
             <div className='flex justify-between items-center p-4 outline outline-3 outline-headerOutline rounded'>
                 <img  className='w-24' src="./logo.svg" alt="the company's logo"/>
                 <div className='px-5 py-2 text-center bg-white rounded'>
-                    <p className='text-xs font-bold tracking-widest'>SCORE</p>
-                    <span className='text-4xl font-bold'>{userScore}</span>
+                    <p className='text-xs text-text2 font-bold tracking-widest'>SCORE</p>
+                    <span className='text-4xl text-text1 font-bold'>{userScore}</span>
                 </div>
             </div>
-            <div className='relative self-center w-fit'>
+            <div className='relative self-center mt-12 w-fit scale-90'>
                 <img src="./bg-triangle.svg" alt=""/>
                 <div className='absolute -top-12 -left-6 bg-paperShade rounded-full'>
                     <div className='relative bottom-2 bg-paperGradient p-4 rounded-full'>
@@ -43,7 +52,8 @@ const App = () => {
                     </div>
                 </div>
             </div>
-            <button className='px-8 py-1 w-fit text-white tracking-widest border border-white rounded-lg self-center'>RULES</button>
+            <button className='px-8 py-1 w-fit text-white tracking-widest border-2 border-headerOutline rounded-lg self-center'
+            onClick={() => setIsOpen(!isOpen)}>RULES</button>
         </div>
         </>
     )
