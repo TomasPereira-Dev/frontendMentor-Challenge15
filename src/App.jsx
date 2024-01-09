@@ -1,14 +1,24 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import RulesModal from './Components/RulesModal'
+import RockButton from './Components/RockButton'
+import PaperButton from './Components/PaperButton'
+import ScissorsButton from './Components/ScissorsButton'
+import Results from './Components/Results'
 import './App.css'
 
 const App = () => {
     const [userScore, setUserScore] = useState(0)
     const [isOpen, setIsOpen] = useState(false)
+    const [resultsIsOpen, setResultsIsOpen]= useState(false)
+    const buttons = [<RockButton key={0}/>, <PaperButton key={1}/>, <ScissorsButton key={2}/>]
 
     const modalStateHandler = (isOpen) => {
         setIsOpen(!isOpen)
+    }
+
+    const resultsStateHandler = (resultsIsOpen) => {
+        setResultsIsOpen(!resultsIsOpen)
     }
 
     return(
@@ -24,37 +34,14 @@ const App = () => {
             </div>
             <div className='relative self-center mt-12 w-fit scale-90'>
                 <img src="./bg-triangle.svg" alt=""/>
-                <div className='absolute -top-12 -left-6 bg-paperShade rounded-full'>
-                    <div className='relative bottom-2 bg-paperGradient p-4 rounded-full'>
-                        <div className='bg-innerShade rounded-full'>
-                            <button className='relative top-1 flex items-center justify-center p-6 max-h-[96px] max-w-[96px] bg-neutral-200 rounded-full'>
-                                <img src="./icon-paper.svg" alt="paper button"/>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className='absolute -top-12 -right-6 bg-scissorsShade rounded-full'>
-                    <div className='relative bottom-2 p-4 bg-scissorsGradient rounded-full'>
-                        <div className='bg-innerShade rounded-full'>
-                            <button className='relative top-1 flex items-center justify-center max-h-[96px] max-w-[96px] p-6 bg-neutral-200 rounded-full' type='button'>
-                                <img src="./icon-scissors.svg" alt="sissors button"/>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div className='absolute bottom-0 left-[30%] bg-rockShade rounded-full'> 
-                    <div className='relative bottom-2 p-4 bg-rockGradient rounded-full'>
-                        <div className='bg-innerShade rounded-full'>
-                            <button className='relative top-1 flex items-center justify-center p-6 bg-neutral-200 rounded-full' type='button'>
-                                <img src="./icon-rock.svg" alt="rock button"/>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <PaperButton resultsIsOpen={resultsIsOpen} />
+                <ScissorsButton resultsIsOpen={resultsIsOpen} />
+                <RockButton resultsIsOpen={resultsIsOpen} />
             </div>
-            <button className='px-8 py-1 w-fit text-white tracking-widest border-2 border-headerOutline rounded-lg self-center'
-            onClick={() => setIsOpen(!isOpen)}>RULES</button>
+            <Results resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} buttonsArr={buttons}/>
+            <button className='px-8 py-1 w-fit text-white tracking-widest border-2 border-headerOutline rounded-lg self-center' onClick={() => setIsOpen(!isOpen)}>RULES</button>
         </div>
+       
         </>
     )
 }
