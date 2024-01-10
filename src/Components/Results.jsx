@@ -6,15 +6,17 @@ const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr}) => {
     const [position, setPosition] = useState("flex") 
 
     useEffect(()=> {
-        if(!resultsIsOpen){
+        if(resultsIsOpen === false){
             setPosition("hidden")
+        }else{
+            setPosition("flex")
         }
     },[resultsIsOpen])
 
     return(
         <>
-        <div className="flex flex-col gap-16">
-            <div className={`flex ${position} justify-center gap-8`}>
+        <div className={`${position} flex-col gap-16`}>
+            <div className={`flex justify-center gap-8`}>
                 <div className="relative flex flex-col items-center gap-4">
                     {buttonsArr[0]}
                     <p className="text-neutral-200 font-bold tracking-wider">YOU PICKED</p>
@@ -30,7 +32,7 @@ const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr}) => {
             </div>
             <div className="flex flex-col items-center gap-4">
                 <p className="text-white text-5xl font-bold tracking-wider">YOU WIN</p>
-                <button className="px-12 py-2 bg-white rounded-lg">PLAY AGAIN</button>
+                <button className="px-12 py-2 text-text1 font-bold tracking-widest bg-white rounded-lg" onClick={resultsStateHandler}>PLAY AGAIN</button>
             </div>
         </div>
 

@@ -1,11 +1,18 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-const RockButton = () => {
-    
+const RockButton = ({resultsIsOpen}) => {
+    const [position, setPosition] = useState("block")
+
+
+    useEffect(() => {
+        if(resultsIsOpen === false){
+            setPosition("absolute")
+        }
+    },[resultsIsOpen])
 
     return(
         <>
-            <div className={`absolute bottom-0 left-[30%] bg-rockShade rounded-full`}> 
+            <div className={`${position} bottom-0 left-[30%] bg-rockShade rounded-full`}> 
                 <div className='relative bottom-2 p-4 bg-rockGradient rounded-full'>
                     <div className='bg-innerShade rounded-full'>
                         <button className='relative top-1 flex items-center justify-center p-6 bg-neutral-200 rounded-full' type='button'>

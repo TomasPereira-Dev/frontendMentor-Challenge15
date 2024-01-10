@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import RulesModal from './Components/RulesModal'
 import RockButton from './Components/RockButton'
@@ -11,7 +11,12 @@ const App = () => {
     const [userScore, setUserScore] = useState(0)
     const [isOpen, setIsOpen] = useState(false)
     const [resultsIsOpen, setResultsIsOpen]= useState(false)
-    const buttons = [<RockButton key={0}/>, <PaperButton key={1}/>, <ScissorsButton key={2}/>]
+    const [buttonsVisibility, setButtonsVisibility] = useState("block")
+    const buttons = [
+         <RockButton key={0}/>, 
+         <PaperButton key={1}/>, 
+         <ScissorsButton key={2}/>
+    ]
 
     const modalStateHandler = (isOpen) => {
         setIsOpen(!isOpen)
@@ -20,6 +25,18 @@ const App = () => {
     const resultsStateHandler = (resultsIsOpen) => {
         setResultsIsOpen(!resultsIsOpen)
     }
+
+    const buttonsVisibilityHandler = useCallback(()=>{
+        if(resultsIsOpen === true){
+            setButtonsVisibility("hidden")
+        }else{
+            setButtonsVisibility("block")
+        }
+    },[resultsIsOpen])
+
+    useEffect(() => {
+        buttonsVisibilityHandler()
+    }, [buttonsVisibilityHandler])
 
     return(
         <>
@@ -32,11 +49,11 @@ const App = () => {
                     <span className='text-4xl text-text1 font-bold'>{userScore}</span>
                 </div>
             </div>
-            <div className='relative self-center mt-12 w-fit scale-90'>
+            <div className={`${buttonsVisibility} relative self-center mt-12 w-fit scale-90`}>
                 <img src="./bg-triangle.svg" alt=""/>
-                <PaperButton resultsIsOpen={resultsIsOpen} />
-                <ScissorsButton resultsIsOpen={resultsIsOpen} />
-                <RockButton resultsIsOpen={resultsIsOpen} />
+                <PaperButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler}/>
+                <ScissorsButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler}/>
+                <RockButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler}/>
             </div>
             <Results resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} buttonsArr={buttons}/>
             <button className='px-8 py-1 w-fit text-white tracking-widest border-2 border-headerOutline rounded-lg self-center' onClick={() => setIsOpen(!isOpen)}>RULES</button>
