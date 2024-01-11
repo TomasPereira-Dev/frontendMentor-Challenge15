@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react"
 
-const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr}) => {
+const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr, logic}) => {
     const [position, setPosition] = useState("flex") 
 
     useEffect(()=> {
         resultsIsOpen === false ? setPosition("hidden") : setPosition("flex")
-    },[resultsIsOpen])
+        logic()
+    },[resultsIsOpen, logic])
 
     return(
         <>

@@ -20,16 +20,47 @@ const App = () => {
          <ScissorsButton key={2}/>
     ]
 
+    const logic = useCallback(()=> {
+        switch (true) {
+            case userPick === "rock" && botPick === "scissors":
+                console.log("YOU WIN!")
+                break;
+            case userPick === "rock" && botPick === "paper":
+                console.log("YOU LOSE!")
+                break;
+            case userPick === "paper" && botPick === "rock":
+                console.log("YOU WIN!")
+                break;
+            case userPick === "paper" && botPick === "scissors":
+                console.log("YOU LOSE!")
+                break;
+            case userPick === "scissors" && botPick === "paper":
+                console.log("YOU WIN!")
+                break;
+            case userPick === "scissors" && botPick === "rock":
+                console.log("YOU LOSE!")
+                break;
+            default:
+                console.log("DRAW", userPick,botPick);
+        }
+    }, [userPick, botPick])
+
     const botPickHandler = () => {
         const botPicked = (Math.random() * 2).toFixed(0)
-        setBotPick(botPicked)   
+        if(botPicked === 0){
+            setBotPick("rock") 
+        }else if(botPicked === 1){
+            setBotPick("paper") 
+        }else{
+            setBotPick("scissors") 
+        }
+  
     }
     
     const userPickHandler = (buttonValue) => {
         setUserPick(buttonValue)   
     }
     
-
     const modalStateHandler = (isOpen) => {
         setIsOpen(!isOpen)
     }
@@ -59,11 +90,15 @@ const App = () => {
                 </div>
                 <div className={`${buttonsVisibility} relative self-center mt-12 w-fit scale-90`}>
                     <img src="./bg-triangle.svg" alt=""/>
-                    <PaperButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} botPickHandler={botPickHandler} userPickHandler={userPickHandler}/>
-                    <ScissorsButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} botPickHandler={botPickHandler} userPickHandler={userPickHandler}/>
-                    <RockButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} botPickHandler={botPickHandler} userPickHandler={userPickHandler}/>
+                    <PaperButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler}
+                     botPickHandler={botPickHandler} userPickHandler={userPickHandler}/>
+                    <ScissorsButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler}
+                     botPickHandler={botPickHandler} userPickHandler={userPickHandler}/>
+                    <RockButton resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} 
+                    botPickHandler={botPickHandler} userPickHandler={userPickHandler} />
                 </div>
-                <Results resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} buttonsArr={buttons}/>
+                <Results resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} 
+                botPick={botPick} userPick={userPick} logic={logic} buttonsArr={buttons}/>
                 <button className='px-8 py-1 w-fit text-white tracking-widest border-2 border-headerOutline rounded-lg self-center' onClick={() => setIsOpen(!isOpen)}>RULES</button>
             </div>
         </>
