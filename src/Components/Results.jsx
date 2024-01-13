@@ -5,8 +5,12 @@ const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr, userPick, botP
     const [position, setPosition] = useState("flex") 
 
     useEffect(()=> {
-        resultsIsOpen === false ? setPosition("hidden") : setPosition("flex")
-        logic()
+        if(resultsIsOpen === false){
+            setPosition("hidden")
+        }else{
+            setPosition("flex") 
+            logic()
+        }
     },[resultsIsOpen, logic])
 
     return(

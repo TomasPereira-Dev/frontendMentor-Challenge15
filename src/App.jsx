@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import RulesModal from './Components/RulesModal.jsx'
 import RockButton from './Components/RockButton.jsx'
@@ -8,7 +8,6 @@ import Results from './Components/Results.jsx'
 import './App.css'
 
 const App = () => {
-    const [userScore, setUserScore] = useState(0)
     const [isOpen, setIsOpen] = useState(false)
     const [resultsIsOpen, setResultsIsOpen]= useState(false)
     const [buttonsVisibility, setButtonsVisibility] = useState("block")
@@ -20,36 +19,33 @@ const App = () => {
          <PaperButton key={1}/>, 
          <ScissorsButton  key={2}/>
     ]
+    const score = useRef(0) 
 
     const logic = useCallback(()=> {
         switch (true) {
             case userPick === 0 && botPick === 2:
                 setMatchResult("YOU WIN")
-                console.log("win: " ,userPick, botPick)
+                score.current = score.current + 1
                 break;
             case userPick === 0 && botPick === 1:
                 setMatchResult("YOU LOSE")
-                console.log("lose: ",userPick, botPick)
                 break;
             case userPick === 1 && botPick === 0:
                 setMatchResult("YOU WIN")
-                console.log("win: ",userPick, botPick)
+                score.current = score.current + 1
                 break;
             case userPick === 1 && botPick === 2:
                 setMatchResult("YOU LOSE")
-                console.log("lose: ",userPick, botPick)
                 break;
             case userPick === 2 && botPick === 1:
                 setMatchResult("YOU WIN")
-                console.log("win: ",userPick, botPick)
+                score.current = score.current + 1
                 break;
             case userPick === 2 && botPick === 0:
                 setMatchResult("YOU LOSE")
-                console.log("lose: ",userPick, botPick)
                 break;
             default:
                 setMatchResult("DRAW");
-                console.log("draw: ",userPick, botPick)
         }
     }, [userPick, botPick])
 
@@ -87,7 +83,7 @@ const App = () => {
                     <img  className='w-24' src="./logo.svg" alt="the company's logo"/>
                     <div className='px-5 py-2 text-center bg-white rounded'>
                         <p className='text-xs text-text2 font-bold tracking-widest'>SCORE</p>
-                        <span className='text-4xl text-text1 font-bold'>{userScore}</span>
+                        <span className='text-4xl text-text1 font-bold'>{score.current}</span>
                     </div>
                 </div>
                 <div className={`${buttonsVisibility} relative self-center mt-12 w-fit scale-90`}>
