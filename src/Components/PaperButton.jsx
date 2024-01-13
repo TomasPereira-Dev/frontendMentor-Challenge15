@@ -13,9 +13,16 @@ const PaperButton = ({resultsIsOpen, resultsStateHandler, botPickHandler, userPi
             <div className={`${position} -top-12 -left-6 bg-paperShade rounded-full`}>
                 <div className='relative bottom-2 bg-paperGradient p-4 rounded-full'>
                     <div className='bg-innerShade rounded-full'>
-                        <button className='relative top-1 flex items-center justify-center p-6 max-h-[96px] max-w-[96px] bg-neutral-200 rounded-full' onClick={() => {resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler("paper");}}>
-                            <img src="./icon-paper.svg" alt="paper button"/>
-                        </button>
+                        { resultsIsOpen === false ? (
+                            <button className='relative top-1 flex items-center justify-center p-6 max-h-[96px] max-w-[96px] bg-neutral-200 rounded-full' onClick={() => {resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler("paper");}} type="button">
+                                <img src="./icon-paper.svg" alt="paper button"/>
+                            </button>
+                            ) : (
+                            <button className='relative top-1 flex items-center justify-center p-6 max-h-[96px] max-w-[96px] bg-neutral-200 rounded-full' onClick={() => {resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler("paper");}} disabled={true} type="button">
+                                <img src="./icon-paper.svg" alt="paper button"/>
+                            </button>
+                            )
+                        }
                     </div>
                 </div>
             </div>
