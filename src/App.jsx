@@ -13,7 +13,8 @@ const App = () => {
     const [resultsIsOpen, setResultsIsOpen]= useState(false)
     const [buttonsVisibility, setButtonsVisibility] = useState("block")
     const [botPick, setBotPick] = useState(null)
-    const [userPick, setUserPick] = useState(null) 
+    const [userPick, setUserPick] = useState(null)
+    const [matchResult, setMatchResult] = useState(null) 
     const buttons = [
          <RockButton key={0}/>, 
          <PaperButton key={1}/>, 
@@ -23,30 +24,37 @@ const App = () => {
     const logic = useCallback(()=> {
         switch (true) {
             case userPick === "rock" && botPick === "scissors":
-                console.log("YOU WIN!")
+                setMatchResult("YOU WIN")
+                console.log("win: " ,userPick, botPick)
                 break;
             case userPick === "rock" && botPick === "paper":
-                console.log("YOU LOSE!")
+                setMatchResult("YOU LOSE")
+                console.log("lose: ",userPick, botPick)
                 break;
             case userPick === "paper" && botPick === "rock":
-                console.log("YOU WIN!")
+                setMatchResult("YOU WIN")
+                console.log("win: ",userPick, botPick)
                 break;
             case userPick === "paper" && botPick === "scissors":
-                console.log("YOU LOSE!")
+                setMatchResult("YOU LOSE")
+                console.log("lose: ",userPick, botPick)
                 break;
             case userPick === "scissors" && botPick === "paper":
-                console.log("YOU WIN!")
+                setMatchResult("YOU WIN")
+                console.log("win: ",userPick, botPick)
                 break;
             case userPick === "scissors" && botPick === "rock":
-                console.log("YOU LOSE!")
+                setMatchResult("YOU LOSE")
+                console.log("lose: ",userPick, botPick)
                 break;
             default:
-                console.log("DRAW", userPick,botPick);
+                setMatchResult("DRAW");
+                console.log("draw: ",userPick, botPick)
         }
     }, [userPick, botPick])
 
     const botPickHandler = () => {
-        const botPicked = (Math.random() * 2).toFixed(0)
+        const botPicked = parseInt((Math.random() * 2).toFixed(0))
         if(botPicked === 0){
             setBotPick("rock") 
         }else if(botPicked === 1){
@@ -54,7 +62,6 @@ const App = () => {
         }else{
             setBotPick("scissors") 
         }
-  
     }
     
     const userPickHandler = (buttonValue) => {
@@ -66,12 +73,13 @@ const App = () => {
     }
 
     const resultsStateHandler = (resultsIsOpen) => {
-        setResultsIsOpen(!resultsIsOpen)  
+        setResultsIsOpen(!resultsIsOpen)
     }
 
     const buttonsVisibilityHandler = useCallback(()=>{
-        resultsIsOpen === true ? setButtonsVisibility("hidden") : setButtonsVisibility("block")
+        resultsIsOpen === true ? setButtonsVisibility("hidden") : setButtonsVisibility("block"); 
     },[resultsIsOpen])
+
 
     useEffect(() => {
         buttonsVisibilityHandler()
@@ -98,7 +106,7 @@ const App = () => {
                     botPickHandler={botPickHandler} userPickHandler={userPickHandler} />
                 </div>
                 <Results resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} 
-                botPick={botPick} userPick={userPick} logic={logic} buttonsArr={buttons}/>
+                botPick={botPick} userPick={userPick} logic={logic} matchResult={matchResult} buttonsArr={buttons}/>
                 <button className='px-8 py-1 w-fit text-white tracking-widest border-2 border-headerOutline rounded-lg self-center' onClick={() => setIsOpen(!isOpen)}>RULES</button>
             </div>
         </>

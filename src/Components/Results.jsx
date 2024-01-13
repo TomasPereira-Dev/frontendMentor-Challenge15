@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react"
 
-const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr, logic}) => {
+const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr, matchResult, logic}) => {
     const [position, setPosition] = useState("flex") 
 
     useEffect(()=> {
@@ -27,7 +27,7 @@ const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr, logic}) => {
                     </div>
                 </div>
                 <div className="flex flex-col items-center gap-4">
-                    <p className="text-white text-5xl font-bold tracking-wider">YOU WIN/LOSE/DRAW</p>
+                    <p className="text-white text-5xl font-bold tracking-wider">{matchResult}</p>
                     <button className="px-12 py-2 text-text1 font-bold tracking-widest bg-white rounded-lg" onClick={resultsStateHandler}>PLAY AGAIN</button>
                 </div>
             </div>
