@@ -16,34 +16,34 @@ const App = () => {
     const [userPick, setUserPick] = useState(null)
     const [matchResult, setMatchResult] = useState(null) 
     const buttons = [
-         <RockButton key={0}/>, 
+         <RockButton  key={0}/>, 
          <PaperButton key={1}/>, 
-         <ScissorsButton key={2}/>
+         <ScissorsButton  key={2}/>
     ]
 
     const logic = useCallback(()=> {
         switch (true) {
-            case userPick === "rock" && botPick === "scissors":
+            case userPick === 0 && botPick === 2:
                 setMatchResult("YOU WIN")
                 console.log("win: " ,userPick, botPick)
                 break;
-            case userPick === "rock" && botPick === "paper":
+            case userPick === 0 && botPick === 1:
                 setMatchResult("YOU LOSE")
                 console.log("lose: ",userPick, botPick)
                 break;
-            case userPick === "paper" && botPick === "rock":
+            case userPick === 1 && botPick === 0:
                 setMatchResult("YOU WIN")
                 console.log("win: ",userPick, botPick)
                 break;
-            case userPick === "paper" && botPick === "scissors":
+            case userPick === 1 && botPick === 2:
                 setMatchResult("YOU LOSE")
                 console.log("lose: ",userPick, botPick)
                 break;
-            case userPick === "scissors" && botPick === "paper":
+            case userPick === 2 && botPick === 1:
                 setMatchResult("YOU WIN")
                 console.log("win: ",userPick, botPick)
                 break;
-            case userPick === "scissors" && botPick === "rock":
+            case userPick === 2 && botPick === 0:
                 setMatchResult("YOU LOSE")
                 console.log("lose: ",userPick, botPick)
                 break;
@@ -55,13 +55,7 @@ const App = () => {
 
     const botPickHandler = () => {
         const botPicked = parseInt((Math.random() * 2).toFixed(0))
-        if(botPicked === 0){
-            setBotPick("rock") 
-        }else if(botPicked === 1){
-            setBotPick("paper") 
-        }else{
-            setBotPick("scissors") 
-        }
+        setBotPick(botPicked)
     }
     
     const userPickHandler = (buttonValue) => {

@@ -14,11 +14,11 @@ const RockButton = ({resultsIsOpen, resultsStateHandler, botPickHandler, userPic
                 <div className='relative bottom-2 p-4 bg-rockGradient rounded-full'>
                     <div className='bg-innerShade rounded-full'>
                         { resultsIsOpen === false ? (
-                            <button className='relative top-1 flex items-center justify-center p-6 bg-neutral-200 rounded-full' onClick={()=>{resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler("rock")}} type='button'>
+                            <button className='relative top-1 flex items-center justify-center p-6 bg-neutral-200 rounded-full' onClick={()=>{resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler(0)}} type='button'>
                                 <img src="./icon-rock.svg" alt="rock button"/>
                             </button>
                             ) : (
-                            <button className='relative top-1 flex items-center justify-center p-6 bg-neutral-200 rounded-full' onClick={()=>{resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler("rock")}} disabled={true} type='button'>
+                            <button className='relative top-1 flex items-center justify-center p-6 bg-neutral-200 rounded-full' onClick={()=>{resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler(0)}} disabled={true} type='button'>
                             <img src="./icon-rock.svg" alt="rock button"/>
                             </button>
                             )

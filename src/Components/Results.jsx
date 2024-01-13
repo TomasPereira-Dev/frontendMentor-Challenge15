@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react"
 
-const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr, matchResult, logic}) => {
+const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr, userPick, botPick, matchResult, logic}) => {
     const [position, setPosition] = useState("flex") 
 
     useEffect(()=> {
@@ -14,13 +14,13 @@ const Results = ({resultsIsOpen, resultsStateHandler, buttonsArr, matchResult, l
             <div className={`${position} flex-col gap-16`}>
                 <div className={`flex justify-center gap-8`}>
                     <div className="relative flex flex-col items-center gap-4">
-                        {buttonsArr[0]}
+                        {buttonsArr[userPick]}
                         <p className="text-neutral-200 font-bold tracking-wider">YOU PICKED</p>
                     </div>
                     <div>
                         <div className="flex flex-col items-center gap-4">
                             <div className="rounded-full bg-black">
-                                {buttonsArr[2]}
+                                {buttonsArr[botPick]}
                             </div>
                             <p className="text-neutral-200 font-bold tracking-wider">THE HOUSE PICKED</p>
                         </div> 

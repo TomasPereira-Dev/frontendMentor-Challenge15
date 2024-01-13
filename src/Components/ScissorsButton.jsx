@@ -14,16 +14,15 @@ const ScissorsButton = ({resultsIsOpen, resultsStateHandler, botPickHandler, use
                 <div className='relative bottom-2 p-4 bg-scissorsGradient rounded-full'>
                     <div className='bg-innerShade rounded-full'>
                         { resultsIsOpen === false  ? (
-                            <button className='relative top-1 flex items-center justify-center max-h-[96px] max-w-[96px] p-6 bg-neutral-200 rounded-full' onClick={()=>{resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler("scissors")}} type='button'>
+                            <button className='relative top-1 flex items-center justify-center max-h-[96px] max-w-[96px] p-6 bg-neutral-200 rounded-full' onClick={()=>{resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler(2)}} type='button'>
                                 <img src="./icon-scissors.svg" alt="sissors button"/>
                             </button>
                             ) : (
-                            <button className='relative top-1 flex items-center justify-center max-h-[96px] max-w-[96px] p-6 bg-neutral-200 rounded-full' onClick={()=>{resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler("scissors")}} disabled={true} type='button'>
+                            <button className='relative top-1 flex items-center justify-center max-h-[96px] max-w-[96px] p-6 bg-neutral-200 rounded-full' onClick={()=>{resultsStateHandler(resultsIsOpen); botPickHandler(); userPickHandler(2)}} disabled={true} type='button'>
                                 <img src="./icon-scissors.svg" alt="sissors button"/>
                             </button>
                             )
-                        }
-                                
+                        }               
                     </div>
                 </div>
             </div> 
