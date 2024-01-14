@@ -17,13 +17,21 @@ const RulesModal = ({isOpen, modalStateHandler}) => {
 
     return (
         <>
-            <div className={`${visibility} fixed top-0 -bottom-full z-50 flex flex-col items-center gap-20 py-14 w-full bg-white 
-            lg:bottom-0 lg:justify-center`}>
-                <p className="text-3xl text-text1 font-bold">RULES</p>
-                <img  src="./image-rules.svg" alt="how to play the game"/>
-                <button onClick={modalStateHandler}>
-                    <img src="./icon-close.svg" alt=""/>
-                </button>
+            
+            <div className={`${visibility} flex items-center justify-center h-full bg-modalShade bg-opacity-75`}>
+                <div className=' flex flex-col items-center justify-center gap-20 w-full h-full bg-white
+                lg:items-start lg:gap-8 lg:p-8 lg:h-auto lg:w-auto lg:rounded-lg'>
+                    <div className="flex justify-center w-full lg:justify-between">
+                        <p className="text-3xl text-text1 font-bold">RULES</p>
+                        <button className="hidden lg:block" onClick={modalStateHandler}>
+                            <img src="./icon-close.svg" alt=""/>
+                        </button>
+                    </div>
+                    <img  src="./image-rules.svg" alt="how to play the game"/>
+                    <button className="lg:hidden" onClick={modalStateHandler}>
+                        <img src="./icon-close.svg" alt=""/>
+                    </button>
+                </div>
             </div>
         </>
     )

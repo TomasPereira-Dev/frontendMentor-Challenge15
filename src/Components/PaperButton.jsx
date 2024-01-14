@@ -10,7 +10,7 @@ const PaperButton = ({resultsIsOpen, resultsStateHandler, botPickHandler, userPi
 
     return(
         <>
-            <div className={`${position} -top-12 -left-6 bg-paperShade rounded-full scale-110  lg:scale-125`}>
+            <div className={`${position} -top-12 -left-6 bg-paperShade rounded-full scale-110 lg:scale-125`}>
                 <div className='relative bottom-2 bg-paperGradient p-4 rounded-full'>
                     <div className='bg-innerShade rounded-full'>
                         { resultsIsOpen === false ? (

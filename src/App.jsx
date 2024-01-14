@@ -78,7 +78,7 @@ const App = () => {
     return(
         <>
             {isOpen && createPortal(<RulesModal isOpen={isOpen} modalStateHandler={modalStateHandler}/>, document.getElementById("rules-modal"))}
-            <div className='relative z-0 flex flex-col justify-between gap-16 h-full max-w-screen-md p-6 mx-auto'> 
+            <div className={`relative flex flex-col gap-16 h-full max-w-screen-md p-6 mx-auto lg:justify-around ${isOpen ? 'z-0' : 'z-50' }`}> 
                 <div className='flex justify-between items-center p-4 outline outline-3 outline-headerOutline rounded-xl lg:px-6'>
                     <img  className='w-24 lg:w-32' src="./logo.svg" alt="the company's logo"/>
                     <div className='px-5 py-2 text-center bg-white rounded-lg lg:px-10'>
