@@ -78,12 +78,12 @@ const App = () => {
     return(
         <>
             {isOpen && createPortal(<RulesModal isOpen={isOpen} modalStateHandler={modalStateHandler}/>, document.getElementById("rules-modal"))}
-            <div className='relative z-0 flex flex-col justify-between gap-16 p-6 h-full'> 
-                <div className='flex justify-between items-center p-4 outline outline-3 outline-headerOutline rounded'>
-                    <img  className='w-24' src="./logo.svg" alt="the company's logo"/>
-                    <div className='px-5 py-2 text-center bg-white rounded'>
-                        <p className='text-xs text-text2 font-bold tracking-widest'>SCORE</p>
-                        <span className='text-4xl text-text1 font-bold'>{score.current}</span>
+            <div className='relative z-0 flex flex-col justify-between gap-16 h-full max-w-screen-md p-6 mx-auto'> 
+                <div className='flex justify-between items-center p-4 outline outline-3 outline-headerOutline rounded-xl lg:px-6'>
+                    <img  className='w-24 lg:w-32' src="./logo.svg" alt="the company's logo"/>
+                    <div className='px-5 py-2 text-center bg-white rounded-lg lg:px-10'>
+                        <p className='text-xs text-text2 font-bold tracking-widest lg:text-sm'>SCORE</p>
+                        <span className='text-4xl text-text1 font-bold lg:text-6xl'>{score.current}</span>
                     </div>
                 </div>
                 <div className={`${buttonsVisibility} relative self-center mt-12 w-fit scale-90`}>

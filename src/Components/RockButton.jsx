@@ -10,7 +10,7 @@ const RockButton = ({resultsIsOpen, resultsStateHandler, botPickHandler, userPic
 
     return(
         <>
-            <div className={`${position} bottom-0 left-[30%] bg-rockShade rounded-full`}> 
+            <div className={`${position} bottom-0 left-[30%] bg-rockShade rounded-full scale-110 lg:scale-125`}> 
                 <div className='relative bottom-2 p-4 bg-rockGradient rounded-full'>
                     <div className='bg-innerShade rounded-full'>
                         { resultsIsOpen === false ? (

@@ -10,7 +10,7 @@ const ScissorsButton = ({resultsIsOpen, resultsStateHandler, botPickHandler, use
 
     return(
         <>
-            <div className={`${position} -top-12 -right-6 bg-scissorsShade rounded-full`}>
+            <div className={`${position} -top-12 -right-6 bg-scissorsShade rounded-full scale-110 lg:scale-125`}>
                 <div className='relative bottom-2 p-4 bg-scissorsGradient rounded-full'>
                     <div className='bg-innerShade rounded-full'>
                         { resultsIsOpen === false  ? (
