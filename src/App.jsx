@@ -97,7 +97,7 @@ const App = () => {
                 </div>
                 <Results resultsIsOpen={resultsIsOpen} resultsStateHandler={resultsStateHandler} 
                 botPick={botPick} userPick={userPick} logic={logic} matchResult={matchResult} buttonsArr={buttons}/>
-                <button className='px-8 py-1 w-fit text-white tracking-widest border-2 border-headerOutline rounded-lg self-center' onClick={() => setIsOpen(!isOpen)}>RULES</button>
+                <button className='self-center px-8 py-1 w-fit text-white tracking-widest border-2 border-headerOutline rounded-lg lg:self-end' onClick={() => setIsOpen(!isOpen)}>RULES</button>
             </div>
         </>
     )
